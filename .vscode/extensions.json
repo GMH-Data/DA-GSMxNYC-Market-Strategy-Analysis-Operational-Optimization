@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-toolsai.jupyter",
+    "charliermarsh.ruff",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-duckdb"
+  ]
+}

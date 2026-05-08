@@ -1,0 +1,82 @@
+import json
+
+nb_path = r'e:\Project\Taxi Project (In Process)\Data.ipynb'
+with open(nb_path, 'r', encoding='utf-8') as f:
+    nb = json.load(f)
+
+# Cell 10 is the one to update
+cell = nb['cells'][10]
+cell['source'] = [
+    "import plotly.graph_objects as go\n",
+    "from plotly.subplots import make_subplots\n",
+    "import pandas as pd\n",
+    "pd.options.display.float_format = '{:.2f}'.format\n",
+    "\n",
+    "query = \"\"\"\n",
+    "WITH MonthlyTrips AS (\n",
+    "    SELECT date_trunc('month', pickup_datetime) as month, 'Yellow' as type, COUNT(*) as trip_count FROM yellow_Pre_2019_cleaned WHERE year(pickup_datetime) BETWEEN 2016 AND 2018 GROUP BY 1, 2\n",
+    "    UNION ALL\n",
+    "    SELECT date_trunc('month', pickup_datetime) as month, 'Green' as type, COUNT(*) as trip_count FROM green_Pre_2019_cleaned WHERE year(pickup_datetime) BETWEEN 2016 AND 2018 GROUP BY 1, 2\n",
+    "    UNION ALL\n",
+    "    SELECT date_trunc('month', pickup_datetime) as month, 'FHV' as type, COUNT(*) as trip_count FROM fhv_Pre_2019_cleaned WHERE year(pickup_datetime) BETWEEN 2016 AND 2018 GROUP BY 1, 2\n",
+    "),\n",
+    "MarketTotal AS (\n",
+    "    SELECT month, SUM(trip_count) as total_market_trips FROM MonthlyTrips GROUP BY 1\n",
+    ")\n",
+    "SELECT r.month, r.type, r.trip_count, t.total_market_trips, (r.trip_count / t.total_market_trips) * 100 as market_share_pct\n",
+    "FROM MonthlyTrips r JOIN MarketTotal t ON r.month = t.month ORDER BY 1, 2\n",
+    "\"\"\"\n",
+    "\n",
+    "df_full = con.execute(query).df()\n",
+    "df_full['month'] = pd.to_datetime(df_full['month'])\n",
+    "\n",
+    "# --- PART 0: MONTHLY GROWTH RATE TABLE ---\n",
+    "df_table = df_full.copy()\n",
+    "df_table['month_str'] = df_table['month'].dt.strftime('%Y-%m')\n",
+    "df_table = df_table.sort_values(['type', 'month'])\n",
+    "df_table['growth_pct'] = df_table.groupby('type')['trip_count'].pct_change() * 100\n",
+    "\n",
+    "# FIX: Before June 2017, FHV data is sparse/0 in this specific split, so we set growth to 0 to avoid NaNs or Inf\n",
+    "df_table.loc[(df_table['type'] == 'FHV') & (df_table['month'] < '2017-06-01'), 'growth_pct'] = 0\n",
+    "\n",
+    "df_monthly_growth_rate_pct = df_table.pivot(index='month_str', columns='type', values='growth_pct').fillna(0).round(2)\n",
+    "\n",
+    "# Add Mean and Median rows to the bottom of the table\n",
+    "stats_rows = pd.DataFrame({\n",
+    "    'FHV': [df_monthly_growth_rate_pct['FHV'].mean(), df_monthly_growth_rate_pct['FHV'].median()],\n",
+    "    'Green': [df_monthly_growth_rate_pct['Green'].mean(), df_monthly_growth_rate_pct['Green'].median()],\n",
+    "    'Yellow': [df_monthly_growth_rate_pct['Yellow'].mean(), df_monthly_growth_rate_pct['Yellow'].median()]\n",
+    "}, index=['MEAN (%)', 'MEDIAN (%)'])\n",
+    "\n",
+    "df_display = pd.concat([df_monthly_growth_rate_pct, stats_rows.round(2)])\n",
+    "\n",
+    "print(\"\\n--- MONTHLY GROWTH RATE TABLE (2016-2018) ---\")\n",
+    "display(df_display)\n",
+    "\n",
+    "# --- PART 1 & 2: Visualizations ---\n",
+    "df_yellow = df_full[df_full['type'] == 'Yellow']\n",
+    "df_green = df_full[df_full['type'] == 'Green']\n",
+    "df_fhv = df_full[df_full['type'] == 'FHV']\n",
+    "\n",
+    "fig1 = go.Figure()\n",
+    "fig1.add_trace(go.Bar(x=df_yellow['month'], y=df_yellow['trip_count'], name='Yellow Taxi', marker_color='#f7d117'))\n",
+    "fig1.add_trace(go.Bar(x=df_green['month'], y=df_green['trip_count'], name='Green Taxi', marker_color='#2b9c3b'))\n",
+    "fig1.add_trace(go.Bar(x=df_fhv['month'], y=df_fhv['trip_count'], name='FHV (Uber/Lyft)', marker_color='#555555'))\n",
+    "fig1.update_layout(title='Monthly Trip Volume (2016-2018)', barmode='stack', template='plotly_white', hovermode='x unified')\n",
+    "fig1.show()\n",
+    "\n",
+    "limit_date = pd.Timestamp('2017-06-01')\n",
+    "df_period_a = df_full[df_full['month'] < limit_date].groupby('type')['trip_count'].sum().reset_index()\n",
+    "df_period_b = df_full[(df_full['month'] >= limit_date) & (df_full['month'] <= '2018-12-01')].groupby('type')['trip_count'].sum().reset_index()\n",
+    "\n",
+    "fig2 = make_subplots(rows=1, cols=2, specs=[[{'type': 'domain'}, {'type': 'domain'}]], subplot_titles=['Share (< Jun 2017)', 'Share (Jun 2017 - Dec 2018)'])\n",
+    "colors_map = {'Yellow': '#f7d117', 'Green': '#2b9c3b', 'FHV': '#555555'}\n",
+    "fig2.add_trace(go.Pie(labels=df_period_a['type'], values=df_period_a['trip_count'], marker=dict(colors=[colors_map[t] for t in df_period_a['type']]), hole=.4), 1, 1)\n",
+    "fig2.add_trace(go.Pie(labels=df_period_b['type'], values=df_period_b['trip_count'], marker=dict(colors=[colors_map[t] for t in df_period_b['type']]), hole=.4), 1, 2)\n",
+    "fig2.update_layout(title_text=\"Comparative Market Share Analysis: The 2017 Shift\", template='plotly_white')\n",
+    "fig2.show()\n"
+]
+
+with open(nb_path, 'w', encoding='utf-8') as f:
+    json.dump(nb, f, indent=1)
+    print("Notebook updated successfully.")

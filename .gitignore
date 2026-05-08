@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Database
+*.duckdb
+*.duckdb.wal
+
+# Datasets - Critical to ignore these large files
+Dataset/
+*.parquet
+*.csv
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/

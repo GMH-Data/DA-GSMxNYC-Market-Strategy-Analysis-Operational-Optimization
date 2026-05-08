@@ -1,0 +1,83 @@
+import json
+
+with open('Data.ipynb', 'r', encoding='utf-8') as f:
+    nb = json.load(f)
+
+for cell in nb['cells']:
+    if cell['cell_type'] == 'code' and '1.3.A Market Saturation Forecast' in ''.join(cell['source']):
+        new_source = [
+            "# 1.3.A Market Saturation Forecast (Monthly Zero Growth Projection)\n",
+            "import numpy as np\n",
+            "import pandas as pd\n",
+            "import plotly.express as px\n",
+            "from sklearn.linear_model import LinearRegression\n",
+            "\n",
+            "# 1. Query: Monthly Trip Counts (2021-2025)\n",
+            "query_forecast = \"\"\"\n",
+            "SELECT \n",
+            "    date_trunc('month', pickup_datetime) as month,\n",
+            "    count(*) as total_trips\n",
+            "FROM fhvhv_2019_2025_cleaned\n",
+            "WHERE year(pickup_datetime) BETWEEN 2021 AND 2025\n",
+            "GROUP BY 1\n",
+            "ORDER BY 1\n",
+            "\"\"\"\n",
+            "df_f = con.execute(query_forecast).df()\n",
+            "\n",
+            "# 2. Calculate MoM Growth Rate\n",
+            "df_f['mom_growth'] = df_f['total_trips'].pct_change() * 100\n",
+            "df_f = df_f.dropna()\n",
+            "\n",
+            "# 3. Linear Regression on Growth Rate Trend\n",
+            "df_f['month_idx'] = range(len(df_f))\n",
+            "X = df_f[['month_idx']]\n",
+            "y = df_f['mom_growth']\n",
+            "\n",
+            "model = LinearRegression()\n",
+            "model.fit(X, y)\n",
+            "\n",
+            "# 4. Generate Monthly Future Projections\n",
+            "slope = model.coef_[0]\n",
+            "intercept = model.intercept_\n",
+            "zero_growth_idx = int(-intercept / slope)\n",
+            "\n",
+            "# Create a range of future months\n",
+            "current_idx = len(df_f)\n",
+            "future_indices = np.arange(current_idx, zero_growth_idx + 1)\n",
+            "future_months = [df_f['month'].max() + pd.DateOffset(months=int(i - current_idx + 1)) for i in future_indices]\n",
+            "future_preds = model.predict(future_indices.reshape(-1, 1))\n",
+            "\n",
+            "df_future = pd.DataFrame({\n",
+            "    'Month': future_months,\n",
+            "    'Predicted MoM Growth (%)': future_preds\n",
+            "})\n",
+            "\n",
+            "# 5. Visualization: Historical + Future Trend\n",
+            "df_f['Type'] = 'Historical'\n",
+            "df_future['Type'] = 'Forecast'\n",
+            "df_plot = pd.concat([df_f.rename(columns={'month': 'Month', 'mom_growth': 'Growth'}), \n",
+            "                     df_future.rename(columns={'Predicted MoM Growth (%)': 'Growth'})])\n",
+            "\n",
+            "fig = px.line(df_plot, x='Month', y='Growth', color='Type', \n",
+            "              title='Monthly Growth Velocity & Saturation Forecast',\n",
+            "              labels={'Growth': 'MoM Growth (%)'},\n",
+            "              color_discrete_map={'Historical': '#FF00BF', 'Forecast': 'white'})\n",
+            "\n",
+            "fig.add_hline(y=0, line_dash=\"dash\", line_color=\"red\", annotation_text=\"Zero Growth (Saturation)\")\n",
+            "fig.update_layout(template='plotly_dark')\n",
+            "fig.show()\n",
+            "\n",
+            "# 6. Detailed Monthly Forecast Table\n",
+            "print(\"\\n--- MONTH-BY-MONTH SATURATION TIMELINE ---\")\n",
+            "display(df_future.head(12).round(3)) # Show first year of forecast\n",
+            "\n",
+            "if len(df_future) > 0:\n",
+            "    saturation_point = df_future.iloc[-1]['Month']\n",
+            "    print(f\"\\nInsight: The market is projected to hit 'Absolute Saturation' on {saturation_point.strftime('%B %Y')}.\")\n",
+            "    print(f\"Countdown: Approximately {len(df_future)} months remaining until zero growth.\")\n"
+        ]
+        cell['source'] = new_source
+        break
+
+with open('Data.ipynb', 'w', encoding='utf-8') as f:
+    json.dump(nb, f, indent=1)
