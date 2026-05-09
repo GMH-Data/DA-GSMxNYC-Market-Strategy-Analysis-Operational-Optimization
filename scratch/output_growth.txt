@@ -1,0 +1,57 @@
+﻿--- EXTRACTING PLOTLY DATA FOR 2.2.1.3 ---
+
+Chart: Monthly Growth Rate (MoM) in 2019: Uber vs Lyft
+[Lyft]
+  February: bdata
+  March: dtype
+[Uber]
+  February: bdata
+  March: dtype
+
+Chart: Monthly Growth Rate (MoM) in 2020: Uber vs Lyft
+[Lyft]
+  January: bdata
+  February: dtype
+[Uber]
+  January: bdata
+  February: dtype
+
+Chart: Monthly Growth Rate (MoM) in 2021: Uber vs Lyft
+[Lyft]
+  January: bdata
+  February: dtype
+[Uber]
+  January: bdata
+  February: dtype
+
+Chart: Monthly Growth Rate (MoM) in 2022: Uber vs Lyft
+[Lyft]
+  January: bdata
+  February: dtype
+[Uber]
+  January: bdata
+  February: dtype
+
+Chart: Monthly Growth Rate (MoM) in 2023: Uber vs Lyft
+[Lyft]
+  January: bdata
+  February: dtype
+[Uber]
+  January: bdata
+  February: dtype
+
+Chart: Monthly Growth Rate (MoM) in 2024: Uber vs Lyft
+[Lyft]
+  January: bdata
+  February: dtype
+[Uber]
+  January: bdata
+  February: dtype
+
+Chart: Monthly Growth Rate (MoM) in 2025: Uber vs Lyft
+[Lyft]
+  January: bdata
+  February: dtype
+[Uber]
+  January: bdata
+  February: dtype

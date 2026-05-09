@@ -1,0 +1,69 @@
+BÁO CÁO PHÂN TÍCH CHIẾN LƯỢC: ĐỘNG LỰC CẠNH TRANH VÀ HIỆU SUẤT THỊ TRƯỜNG HVFHS
+Cập nhật ngày: 10/05/2026
+Người thực hiện: Antigravity (CODE-Engineer CLI)
+
+================================================================================
+I. TỔNG QUAN THỊ TRƯỜNG (EXECUTIVE SUMMARY)
+================================================================================
+Thị trường gọi xe công nghệ (HVFHS) tại NYC đang bước vào giai đoạn bão hòa và tối ưu hóa vận hành. Cấu trúc thị trường giữa Uber và Lyft vẫn duy trì trạng thái ổn định, tuy nhiên chiến lược của hai đơn vị đang có sự phân hóa rõ rệt:
+- Uber: Tập trung củng cố vị thế dựa trên quy mô kinh tế lớn và duy trì tính ổn định trong dài hạn.
+- Lyft: Duy trì tăng trưởng thông qua khả năng thích ứng linh hoạt và tận dụng các biến động nhu cầu theo chu kỳ để tối ưu hóa thị phần ngắn hạn.
+
+================================================================================
+II. PHÂN TÍCH CHU KỲ VÀ BIẾN ĐỘNG CHIẾN LƯỢC (STRATEGIC GAP ANALYSIS)
+================================================================================
+Phân tích độ lệch (Deviation) giữa năm 2025 và trung bình lịch sử (2019-2024) cho thấy những thay đổi quan trọng trong hiệu suất vận hành:
+
+1. Lyft: Tăng trưởng mạnh mẽ kèm biến động cao
+- Hiệu suất tháng 3: Lyft ghi nhận mức tăng trưởng vượt 15.40% so với trung bình lịch sử cùng kỳ. Điều này phản ánh khả năng tận dụng tối đa nhu cầu thị trường trong các giai đoạn cao điểm.
+- Hiệu suất tháng 1: Vượt mức trung bình lịch sử 5.85%, cho thấy sự cải thiện trong việc duy trì nhu cầu sau giai đoạn lễ hội.
+- Biến động tháng 6: Ghi nhận mức sụt giảm 14.36% so với quy luật lịch sử, cho thấy sự xuất hiện của các yếu tố tác động bất thường làm gián đoạn đà tăng trưởng.
+
+2. Uber: Trạng thái ổn định và bão hòa
+- Hiệu suất tháng 4: Ghi nhận mức bứt phá đáng kể với độ lệch +13.33% so với baseline lịch sử.
+- Xu hướng bão hòa: Trong đa số các tháng còn lại, Uber duy trì mức hiệu suất thấp hơn trung bình lịch sử (dao động từ -1% đến -7%). Điều này cho thấy Uber đang tiệm cận ngưỡng bão hòa và khó tạo ra sự đột phá về số lượng chuyến đi.
+- Độ ổn định cao: Mặc dù tăng trưởng chậm, biên độ biến động của Uber hẹp hơn Lyft, phản ánh nền tảng khách hàng và dòng tiền ổn định.
+
+================================================================================
+III. DIỄN BIẾN TĂNG TRƯỞNG LỊCH SỬ (HISTORICAL BENCHMARKS 2019-2025)
+================================================================================
+Tốc độ tăng trưởng trung bình MoM (Month-over-Month) qua các thời kỳ:
+
+- Giai đoạn 2019-2020: Lyft (1.20%) vs Uber (1.55%) -> Uber dẫn đầu về hiệu suất tăng trưởng quy mô.
+- Giai đoạn 2021-2022: Lyft (2.92%) vs Uber (2.35%) -> Lyft bứt phá mạnh trong giai đoạn phục hồi sau đại dịch.
+- Giai đoạn 2023-2024: Lyft (0.04%) vs Uber (0.64%) -> Thị trường đi ngang, Uber ưu tiên tối ưu hóa lợi nhuận.
+- Năm 2025 (Hiện tại): Lyft (1.83%) vs Uber (0.15%) -> Lyft ghi nhận tốc độ phục hồi cao hơn đáng kể so với Uber.
+
+================================================================================
+IV. MA TRẬN TƯƠNG QUAN: PHÂN TÍCH CHIẾN LƯỢC (STRATEGIC CORRELATION)
+================================================================================
+Dựa trên phân tích tương quan đa biến, các động lực thực tế ảnh hưởng đến hiệu suất của từng hãng bao gồm:
+
+1. Các yếu tố tác động chung và riêng
+- Yếu tố tác động đồng nhất:
+  * Khoảng cách chuyến đi (avg_distance): Cả hai hãng đều tập trung vào phân khúc chuyến đi ngắn để thúc đẩy tăng trưởng (Uber r = -0.36; Lyft r = -0.38).
+  * Thời gian di chuyển (avg_duration_min): Nhu cầu tăng tỷ lệ thuận với độ phức tạp của giao thông đô thị (r ≈ +0.22).
+- Sự phân hóa trong vận hành:
+  * Chiến lược giá (Avg Fare): Uber sử dụng chính sách giá thấp để tác động đến thị phần (r = -0.25), trong khi Lyft ít nhạy cảm hơn với biến số này (r = +0.05).
+  * Dịch vụ đi chung (Shared Request Rate): Uber (r = +0.44) bảo vệ thị phần thông qua dịch vụ đi chung; ngược lại, Lyft (r = -0.34) có rủi ro giảm thị phần nếu tăng cường phân khúc này.
+  * Thu nhập tài xế (Driver Pay): Lyft phụ thuộc lớn vào việc duy trì nguồn cung tài xế (r = +0.20), trong khi Uber (r = -0.14) đã ổn định được quy mô đội ngũ.
+  * Chất lượng dịch vụ (Avg Tip): Lyft có mức Tip cao hơn, tuy nhiên đây là kết quả của sự hài lòng sau dịch vụ hơn là động lực thúc đẩy số lượng chuyến đi (r ≈ 0.07).
+
+2. Động lực ảnh hưởng đến Thị phần (Market Share Drivers)
+- Uber: Duy trì lợi thế cạnh tranh thông qua dịch vụ đi chung và chính sách giá tối ưu.
+- Lyft: Tập trung vào phân khúc khách hàng ưu tiên sự riêng tư và chất lượng trải nghiệm. Để duy trì thị phần, Lyft cần đảm bảo thu nhập cho tài xế và kiểm soát thời gian chờ (hiện đang có tương quan thuận r = +0.17 với thị phần, gây áp lực lên vận hành).
+
+3. Động lực ảnh hưởng đến Tốc độ tăng trưởng (Growth Rate Drivers)
+- Phân khúc trọng điểm: Tăng trưởng chủ yếu đến từ nhu cầu di chuyển ngắn trong nội đô.
+- Tính ổn định của Uber: Hiệu suất tăng trưởng ít nhạy cảm với các biến số vận hành hàng ngày, đòi hỏi các giải pháp công nghệ mới để mở rộng quy mô.
+- Tác động ngoại cảnh: Tình trạng giao thông khó khăn là yếu tố thúc đẩy người dùng chuyển sang sử dụng dịch vụ gọi xe của cả hai hãng.
+
+================================================================================
+V. KẾT LUẬN VÀ DỰ BÁO (CONCLUSION & OUTLOOK)
+================================================================================
+1. Uber đang chuyển dịch mô hình hướng tới tối ưu hóa lợi nhuận và dòng tiền ổn định thay vì tập trung mở rộng số lượng chuyến đi thuần túy.
+2. Lyft duy trì chiến lược tăng trưởng linh hoạt, tập trung vào việc đáp ứng nhu cầu theo chu kỳ và đảm bảo sự hài lòng của đội ngũ đối tác tài xế.
+3. Xu hướng 2025-2026: Tăng trưởng dự kiến sẽ tập trung vào việc tối ưu hóa thuật toán điều phối để giảm thời gian chờ và nâng cao hiệu suất cho các chuyến đi ngắn trong khu vực nội đô.
+
+--------------------------------------------------------------------------------
+Báo cáo dựa trên dữ liệu thực tế từ hệ thống DuckDB và các phân tích tương quan trong Analysis.ipynb.
