@@ -24,3 +24,12 @@ Thumbs.db
 
 # IDEs
 .idea/
+
+# Scratch and Drafts
+scratch/
+Draft/
+Demo/
+
+# Project Specific Rules (Exclusion)
+GEMINI.MD
+.agents/

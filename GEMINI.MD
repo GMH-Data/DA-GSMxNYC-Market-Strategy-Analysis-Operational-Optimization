@@ -4,9 +4,9 @@
 
 This project provides a comprehensive overview and analysis environment for the NYC Taxi & Limousine Commission (TLC) Trip Record Data. The core objectives are:
 
-1. **Business Analysis**: Phân tích hoạt động kinh doanh của taxi để đánh giá mức độ tăng trưởng qua các năm.
-2. **Business Forecasting**: Dự báo tình hình kinh doanh trong tương lai dựa trên dữ liệu lịch sử bằng mô hình **Prophet**.
-3. **Anomaly Warning System**: Thiết lập các chỉ số (indicators) sử dụng **Isolation Forest** để đưa ra cảnh báo kịp thời, kiểm thử trên tập dữ liệu `2026_Plus`.
+1. **Market Entry Strategy & Operational Optimization**: Phân tích tình hình thị trường taxi NYC để xác định các cơ hội chiến lược và tối ưu hóa vận hành, phục vụ mục tiêu thâm nhập thị trường của **GSM**.
+2. **Operational Demand Forecasting**: Dự báo nhu cầu thị trường để tối ưu hóa việc điều phối đội xe (Fleet Dispatching) dựa trên dữ liệu lịch sử bằng mô hình **Prophet**.
+3. **Operational Efficiency & Anomaly Warning**: Giám sát hiệu suất và thiết lập hệ thống cảnh báo bất thường trong vận hành bằng **Isolation Forest**, đảm bảo GSM duy trì chất lượng dịch vụ ổn định.
 
 Hệ thống được thiết kế để xử lý hiệu quả các tập dữ liệu khổng lồ (hơn 2.9 tỷ dòng từ trước năm 2019 đến 2026+) bằng các công cụ dữ liệu hiện đại (DuckDB) mà không cần đến các cụm máy tính phân tán.
 
@@ -22,6 +22,7 @@ Hệ thống được thiết kế để xử lý hiệu quả các tập dữ l
 ## 3. Folder Structure
 
 - `Analysis.ipynb`: **[MAIN]** Primary analysis environment and execution flow.
+- `forecast_models.ipynb`: File để xây dựng các mô hình dự đoán.
 - `Draft/`: Contains `Data.ipynb` as a historical reference and draft logic.
 - `Dataset/`: Contains raw Parquet files and `DIM/` directory for dimension tables. **(Ignored by Git)**
 - `src/`: Reusable Python modules (e.g., `db_manager.py`) and the `taxi_data.duckdb` database.

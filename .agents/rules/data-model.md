@@ -1,6 +1,5 @@
 ---
-trigger: always_on
-glob: "**/*.{ipynb,py,md}"
+trigger: model_decision
 description: "Rules for data modeling and machine learning model selection and implementation."
 ---
 
