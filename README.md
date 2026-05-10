@@ -1,13 +1,13 @@
 # GSM NYC – Market Strategy Analysis & Operational Optimization (Analysis Intelligence)
 
 > [!TIP]
-> **Best Viewing Experience**: Due to the high-density interactive maps and extensive data visualizations, the main `Analysis.ipynb` file is too large for GitHub's web preview. 
-> 
-> 1.  **Recommended**: `git clone` this repository and open the notebooks locally using Jupyter Lab/Notebook.
-> 2.  **Quick Preview**: Download and open the [**Analysis_Report.html**](https://github.com/GMH-Data/DA-GSMxNYC-Market-Strategy-Analysis-Operational-Optimization/blob/master/Analysis_Report.html) in your browser for a full interactive experience without cloning.
+> **Best Viewing Experience**: Due to the high-density interactive maps and extensive data visualizations, the main `Analysis.ipynb` file is too large for GitHub's web preview. It is highly recommended to `git clone` this repository and open the notebooks locally using Jupyter Lab/Notebook.
 
 ## 1. Project Vision
-This project leverages New York City's massive mobility datasets to develop market entry scenarios for GSM (Green SM). Through `Analysis.ipynb`, we go beyond simple observation to decode customer behavior, driver economic efficiency, and the operational constraints of competitor systems (Uber/Lyft).
+This project leverages New York City's massive mobility datasets to develop market entry scenarios for GSM (Green SM). 
+
+*   **Market Intelligence (`Analysis.ipynb`)**: Decodes customer behavior, driver economic efficiency, and the operational constraints of competitor systems (Uber/Lyft).
+*   **Operational Intelligence (`forecast_models.ipynb`)**: Implements predictive systems including the **Congestion Floor Model** (to simulate driver income guarantees) and the **Demand Predictor Model** (to optimize VinFast EV fleet positioning based on real-time demand forecasts).
 
 ### 1.1. Dataset Source & Automation
 *   **Primary Source:** [NYC TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) (Yellow/Green Taxi, FHV, FHVHV).
