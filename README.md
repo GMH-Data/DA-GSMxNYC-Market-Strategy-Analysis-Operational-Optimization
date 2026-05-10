@@ -1,5 +1,8 @@
 # GSM NYC – Market Strategy Analysis & Operational Optimization (Analysis Intelligence)
 
+> [!IMPORTANT]
+> **View the Interactive Report**: Since the main notebook file (`Analysis.ipynb`) is too large for GitHub to preview, please download the [**Analysis_Report.html**](https://github.com/GMH-Data/DA-GSMxNYC-Market-Strategy-Analysis-Operational-Optimization/blob/master/Analysis_Report.html) file and open it in your browser to see the full analysis with interactive Plotly charts.
+
 ## 1. Project Vision
 This project leverages New York City's massive mobility datasets to develop market entry scenarios for GSM (Green SM). Through `Analysis.ipynb`, we go beyond simple observation to decode customer behavior, driver economic efficiency, and the operational constraints of competitor systems (Uber/Lyft).
 
