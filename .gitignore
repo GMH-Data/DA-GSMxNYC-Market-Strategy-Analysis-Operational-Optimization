@@ -13,10 +13,10 @@ ENV/
 *.duckdb
 *.duckdb.wal
 
-# Datasets - Critical to ignore these large files
-Dataset/
+# Datasets
+Dataset/*
+!Dataset/DIM/
 *.parquet
-*.csv
 
 # OS generated files
 .DS_Store
@@ -24,12 +24,14 @@ Thumbs.db
 
 # IDEs
 .idea/
+.vscode/
 
-# Scratch and Drafts
+# Scratch, Drafts and Demos
 scratch/
 Draft/
 Demo/
 
-# Project Specific Rules (Exclusion)
+# Project Specific Rules
 GEMINI.MD
+# .agents/ is kept if needed for behavior, but excluding here to keep clean as per general standard
 .agents/
